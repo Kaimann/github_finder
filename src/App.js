@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from "./components/layout/Navbar";
 import User from "./components/users/User";
 import Alert from "./components/layout/Alert";
@@ -22,12 +22,12 @@ const App = () => {
                         <Navbar />
                         <div className="container">
                             <Alert />
-                            <Switch>
-                                 <Route exact path='/' component={Home} />
-                                 <Route exact path='/about' component={About} />
-                                 <Route exact path='/user/:login' component={User} />
-                                 <Route component={NotFound} />
-                            </Switch>
+                            <Routes>
+                                 <Route path='/' element={<Home/>} />
+                                 <Route path='/about' element={<About/>} />
+                                 <Route path='/user/:login' element={<User/>} />
+                                 <Route path='*' element={<NotFound/>} />
+                            </Routes>
                         </div>
                     </div>
                 </Router>

@@ -1,17 +1,19 @@
 import React, {Fragment, useContext, useEffect} from 'react';
 import Spinner from '../layout/Spinner';
 import Repos from '../repos/Repos';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import GithubContext from "../../context/github/githubContext";
 
-const User = ({ match }) => {
+const User = () => {
     const githubContext = useContext(GithubContext);
 
     const { getUser, loading, user, repos, getUserRepos } = githubContext;
 
+    const { login } = useParams();
+
     useEffect(() => {
-        getUser(match.params.login);
-        getUserRepos(match.params.login);
+        getUser(login);
+        getUserRepos(login);
         // eslint-disable-next-line
     }, [])
 
@@ -22,7 +24,6 @@ const User = ({ match }) => {
         bio,
         company,
         blog,
-        login,
         html_url,
         followers,
         following,
